@@ -1,0 +1,9 @@
+{
+  "trans": {
+    "header": "Localizado usando i18next",
+    "welcome": "Bienvenida {{ name }}!",
+    "message": "tienes 1 mensaje",
+    "message_zero": "tienes 0 mensajes",
+    "message_other": "tienes {{ count }} mensajes"
+  }
+}
