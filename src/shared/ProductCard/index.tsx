@@ -38,7 +38,7 @@ const ProductCard: React.FC<ProductCard> = ({
   stock,
 }) => (
   <Grid key={id} item {...colWidth} mt={0}>
-    <Card>
+    <Card sx={{ '&:hover': { transform: 'scale(1.01)' } }}>
       <Link to={`./${id}`}>
         <CardActionArea sx={sxCardActionArea}>
           <LazyLoadImage title={title} source={thumbnail} />

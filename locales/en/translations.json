@@ -1,9 +1,6 @@
 {
-  "trans": {
-    "header": "Localized using i18next",
-    "welcome": "Welcome {{ name }} ",
-    "message": "You have 1 message",
-    "message_zero": "You have 0 new messages",
-    "message_other": "You have {{ count }} messages"
+  "menu": {
+    "allproducts": "All Products",
+    "shopbycategory": "Shop By Category"
   }
 }

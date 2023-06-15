@@ -1,52 +1,42 @@
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { createSlice } from '@reduxjs/toolkit';
 import { ProductList } from '../../shared/ProductGrid';
+import { Action } from './appSlice';
 
 export type ProductSlice = {
   data: ProductList;
-  error: boolean;
-  searchText: string;
 };
 
 const initialProductList = {} as ProductList;
 
 const initialState: ProductSlice = {
   data: initialProductList,
-  error: false,
-  searchText: '',
 };
 
 export const productSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    error: (state, { payload }) => {
-      state.error = payload;
-    },
-    success: (state, { payload }) => {
+    success: (state: ProductSlice, { payload }: Action<ProductList>) => {
       state.data = payload;
     },
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    pending: (state, _payload) => {
+    pending: (state: ProductSlice) => {
       state.data = initialProductList;
     },
-    pendingSearch: (state, { payload }) => {
-      state.searchText = payload;
-    },
-    // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-    pendingProduct: (state, { payload }) => {},
-    pendingListByCategory: (state, { payload }) => {
-      state.data = payload;
+    pendingProduct: () => {},
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    pendingByCategory: (state: ProductSlice, { payload }: Action<string>) => {
+      state.data = initialProductList;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
 export const {
-  error: loadingError,
-  pending: loadingProducts,
-  success: productList,
-  pendingSearch: productSearch,
-  pendingListByCategory: productListByCategory,
+  success,
+  pending: getProductList,
+  pendingByCategory: getProductListByCategory,
   pendingProduct: getProductById,
 } = productSlice.actions;
 

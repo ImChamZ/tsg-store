@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductGrid from '../../shared/ProductGrid';
 import { useDispatch, useSelector } from 'react-redux';
-import { productListByCategory } from '../../store/reducers/productSlice';
+import { getProductListByCategory } from '../../store/reducers/productSlice';
 import { AppState } from '../../store/reducers/combineReducers';
 
 const Category: React.FC = () => {
@@ -11,7 +11,7 @@ const Category: React.FC = () => {
   const productList = useSelector((state: AppState) => state.product.data);
 
   useEffect(() => {
-    dispatch(productListByCategory(id));
+    dispatch(getProductListByCategory(id as string));
   }, [dispatch, id]);
 
   return <ProductGrid products={productList?.products} />;

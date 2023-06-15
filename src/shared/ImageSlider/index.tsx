@@ -6,18 +6,20 @@ const ImageSliderWrapper = styled.div`
   position: relative;
 `;
 
-const ImageSlider = ({ imageList }) => {
-  return (
-    <ImageSliderWrapper>
-      <SimpleImageSlider
-        width={'100%'}
-        height={500}
-        images={imageList}
-        showBullets={true}
-        showNavs={true}
-      />
-    </ImageSliderWrapper>
-  );
+type ImageList = {
+  imageList: string[];
 };
+
+const ImageSlider: React.FC<ImageList> = ({ imageList }) => (
+  <ImageSliderWrapper>
+    <SimpleImageSlider
+      width={'100%'}
+      height={500}
+      images={imageList}
+      showBullets={true}
+      showNavs={true}
+    />
+  </ImageSliderWrapper>
+);
 
 export default ImageSlider;

@@ -6,6 +6,7 @@ import ProductDetails from '../../shared/ProductDetails';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../store/reducers/combineReducers';
 import ImageSlider from '../../shared/ImageSlider';
+import { PRODUCT_API_BASE } from '../../store/sagas/products';
 
 const colWidth = { xs: 12, sm: 6 };
 
@@ -13,8 +14,7 @@ const ProductHome: React.FC = () => {
   const { id } = useParams();
   const { loading, error } = useSelector((state: AppState) => state.app);
 
-  const { data } = useFetch<Product>(`https://dummyjson.com/products/${id}`);
-
+  const { data } = useFetch<Product>(`${PRODUCT_API_BASE}/${id}`);
   const { title, images, price, rating, stock, description } = data;
 
   return (
@@ -24,7 +24,6 @@ const ProductHome: React.FC = () => {
           <Grid item container sx={colWidth}>
             <Box flex={1} p={2} pl={0}>
               <ImageSlider imageList={images} />
-              {/* <LazyLoadImage source={thumbnail} title={title} /> */}
             </Box>
             <Box flex={1} p={2}>
               <ProductDetails

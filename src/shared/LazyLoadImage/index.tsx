@@ -12,7 +12,9 @@ const ImageContent = styled.div`
 
   img:first-of-type {
     width: 100%;
-    object-fit: contain;
+    padding: 8px;
+    overflow: hidden;
+    object-fit: cover;
   }
 `;
 

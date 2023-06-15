@@ -24,7 +24,7 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(ico|png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
       {
@@ -37,6 +37,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       template: `${path.resolve(__dirname, '..')}/index.html`,
+      favicon: './assets/favicon.ico',
     }),
   ],
   optimization: {

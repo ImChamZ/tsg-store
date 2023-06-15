@@ -1,7 +1,5 @@
 # TSG-Store
 
-## Start
-
 ## Tech stack
 
 - React
@@ -15,16 +13,32 @@
 - Prettier
 - i18Next
 
-## Setup locally
-Make sure you are running node>=16 and npm>=8 in your local machine
+## Quick start
 
-- Checkout repository
-- Run `yarn install` to download packages
-- Run `yarn start` to serve locally
-- You will see the magic in 3,2,1 .... if not goto http://localhost:8080/ 
+    Let's use yarn with eveything
+
+1.  Make sure that you have Node.js v16 and npm v8 or above installed.
+2.  Clone this repo using `https://github.com/ImChamZ/tsg-store.git <YOUR_FOLDER_NAME>`
+3.  Move to the appropriate directory: `cd <YOUR_FOLDER_NAME>`.<br />
+4.  Run `yarn install` in order to install dependencies<br />
+5.  Run `yarn start` to delete the example app.
+
+Now you're ready to rumble!
+
+---
 
 ## Testing
 
-- We are using jest and react-testing library for tests.
-- Run tests: `yarn test`
-- Run tests with coverage: `yarn coverage`
+1. We are using jest and react-testing library for tests.
+2. Run `yarn test` to run test cases
+3. Run `yarn coverage` to run tests with coverage
+
+---
+
+## Ongoing/ Roadmap
+
+- Fix all eslint issues
+- Add more typescript coverage
+- Increase test coverage
+- Add localization support
+- UI improvements

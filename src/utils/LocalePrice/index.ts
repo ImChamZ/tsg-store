@@ -1,6 +1,6 @@
-type Debounce = (amount: number, currency?: string) => string;
+type LocalPrice = (amount: number | bigint, currency?: string) => string;
 
-const localePrice: Debounce = (amount, currency = 'GBP') => {
+const localePrice: LocalPrice = (amount, currency = 'GBP') => {
   const options = {
     style: 'currency',
     currency: currency,

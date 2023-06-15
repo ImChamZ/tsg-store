@@ -1,43 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { Action } from './appSlice';
 
 export type CategorySlice = {
   data: string[];
-  error: boolean;
-  searchText: string;
 };
 
 const initialState: CategorySlice = {
-  error: false,
   data: [],
-  searchText: '',
 };
 
 export const categorySlice = createSlice({
   name: 'category',
   initialState,
   reducers: {
-    error: (state, { payload }) => {
-      state.error = payload;
-    },
-    pending: (state) => {
+    pending: (state: CategorySlice) => {
       state.data = [];
-      state.searchText = '';
     },
-    success: (state, { payload }) => {
+    success: (state: CategorySlice, { payload }: Action<string[]>) => {
       state.data = payload;
-    },
-    categorySearch: (state, { payload }) => {
-      state.searchText = payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const {
-  error,
-  pending: loadCategories,
-  success: categoryList,
-  categorySearch,
-} = categorySlice.actions;
+export const { pending: getCategoryList, success } = categorySlice.actions;
 
 export default categorySlice.reducer;

@@ -1,12 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-type Action = {
+export type Action<T> = {
   type: string;
+  payload: T;
 };
 
 export type AppSlice = {
   loading: boolean;
   error: boolean;
+  searchText: string;
   currentLocation: string;
 };
 
@@ -14,20 +16,21 @@ const initialState: AppSlice = {
   loading: false,
   error: false,
   currentLocation: 'products',
+  searchText: '',
 };
 
 // matcher functions
-const errorAction = (action: Action) => action.type.includes('error');
-const loadingEndAction = (action: Action) => action.type.includes('success');
-const loadingInProcess = (action: Action) => action.type.includes('pending');
+const errorActions = ({ type }: Action<string>) => type.includes('error');
+const loadingSuccessActions = ({ type }: Action<string>) =>
+  type.includes('success');
+const loadingActions = ({ type }: Action<string>) => type.includes('pending');
+const searchAction = ({ type }: Action<string>) =>
+  type.toLowerCase().includes('search');
 
 export const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    setNavigation: (state, { payload }) => {
-      state.currentLocation = payload;
-    },
     loading: (state, { payload }) => {
       state.loading = payload;
       state.error = false;
@@ -35,26 +38,33 @@ export const appSlice = createSlice({
     error: (state, { payload }) => {
       state.error = payload;
     },
+    navigation: (state, { payload }) => {
+      state.currentLocation = payload;
+    },
   },
   extraReducers: (builder) => {
     builder
-      .addMatcher(loadingInProcess, (state) => {
+      .addMatcher(loadingActions, (state) => {
         state.loading = true;
         state.error = false;
       })
-      .addMatcher(loadingEndAction, (state) => {
+      .addMatcher(loadingSuccessActions, (state) => {
         state.loading = false;
       })
-      .addMatcher(errorAction, (state) => {
+      .addMatcher(errorActions, (state) => {
         state.loading = false;
         state.error = true;
+      })
+      .addMatcher(searchAction, (state, { payload }) => {
+        state.searchText = payload;
+        state.loading = payload ? true : false;
       });
   },
 });
 
 export const {
-  setNavigation,
   loading: setAppLoading,
   error: setAppError,
+  navigation: setNavigation,
 } = appSlice.actions;
 export default appSlice.reducer;

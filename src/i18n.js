@@ -24,4 +24,5 @@ i18n.use(initReactI18next).init({
 });
 
 i18n.languages = ['en', 'es'];
+// i18n.changeLanguage('es') // to change the language
 export default i18n;
